@@ -1,0 +1,13 @@
+name = input("name: ")
+science = input("science: ")
+math = input("math: ")
+english = input("english: ")
+total = float(science) + float(math) + float(english)
+average = float(total) / 3
+
+print(average)
+if average < 75:
+    print("You Failed!")
+if average > 75:
+    print("Congratulations! You Passed")
+    
