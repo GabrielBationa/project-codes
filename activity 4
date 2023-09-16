@@ -1,0 +1,34 @@
+records = {}
+print("==============================================")
+print("|            RECORDING KEEPING APP           |")
+print("==============================================")
+print("")
+print('              "C H O I C E S"         ')
+print("")
+print("        Enter 'ADD' to add  data")
+print("        Enter 'DEL' to delete")
+print("        Enter 'END' to exit app")
+print("")
+while True:
+    choice = input("Enter a choice: ")
+
+    if choice == "ADD":
+        key = input("Enter key: ")
+        value = input("Enter value: ")
+        records[key] = value
+
+        print(records)
+
+    elif choice == "DEL":
+        key = input("Enter what you want to delete:")
+        if key in records:
+            del records[key]
+
+        print(records)
+
+    elif choice == "END":
+        print("Thank you!!")
+        break
+
+    else:
+        print("Invalid choice! Please try again!")
