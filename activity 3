@@ -1,0 +1,14 @@
+inputstr = input('Enter a string: ')
+UPPERC = 0
+LOWERC = 0
+
+for letter in inputstr:
+    if letter.islower():
+        LOWERC += 1
+    if letter.isupper():
+        UPPERC += 1
+        
+        
+print("String: " + inputstr)
+print("Numbers of uppercase letters: " + str(UPPERC))
+print("Numbers of lowercase letters: " + str(LOWERC))
