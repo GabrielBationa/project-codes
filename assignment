@@ -1,0 +1,36 @@
+print("    Hello User!")
+print(" ")
+user = input("Please enter the employee name: ")
+year = int(input("Please enter the years in service: "))
+print(" ")
+print("Office:     [IT]     [ACCT]     [HR] ")
+print(" ")
+office = input("Please enter the Office name: ")
+
+IT = (10_000, 5000)
+ACCT = (12_000, 6000)
+HR = (15_000, 7500)
+
+print("")
+print("Employee:" + user)
+print("Work in"+ " " + office.upper()+ " " + "office for" +" "+ str(year) +" "+ "years.")
+
+if office.upper() == 'IT' or office.lower() == "it":
+    if year >= 10:
+        print("Salary:",IT[0])
+    else:
+        print("Salary:",IT[1])
+
+elif office.upper() == 'ACCT' or office.lower() == "acct":
+    if year >= 10:
+        print("Salary:",ACCT[0])
+    else:
+        print("Salary:",ACCT[1])
+
+elif office.upper() == 'HR' or office.lower() == "hr":
+    if year >= 10:
+        print("Salary:",HR[0])
+    else:
+        print("Salary:",HR[1])
+print("")
+print("Done.")
