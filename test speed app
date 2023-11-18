@@ -1,0 +1,71 @@
+import tkinter as tk
+import time
+import random
+from lorem_text import lorem
+
+class TypingSpeedTestApp:
+    def __init__(self, master):
+        self.master = master
+        self.master.title("Typing Speed Test")
+
+        self.difficulty_levels = ['Easy', 'Intermediate', 'Hard']
+        self.text_to_type = ""
+        self.user_input = tk.StringVar()
+
+        self.setup_ui()
+
+    def setup_ui(self):
+        self.difficulty_var = tk.StringVar()
+        self.difficulty_var.set(self.difficulty_levels[0])
+
+        tk.Label(self.master, text="Select Difficulty:").pack()
+        difficulty_menu = tk.OptionMenu(self.master, self.difficulty_var, *self.difficulty_levels)
+        difficulty_menu.pack()
+
+        tk.Button(self.master, text="Start Test", command=self.start_test).pack()
+
+        self.text_display = tk.Text(self.master, height=5, width=40, state=tk.DISABLED)
+        self.text_display.pack()
+
+        tk.Label(self.master, text="Type Here:").pack()
+        entry = tk.Entry(self.master, textvariable=self.user_input)
+        entry.pack()
+
+        tk.Button(self.master, text="Submit", command=self.evaluate_result).pack()
+
+    def start_test(self):
+        difficulty = self.difficulty_var.get()
+        self.text_to_type = self.generate_random_paragraph(difficulty)
+
+        self.text_display.config(state=tk.NORMAL)
+        self.text_display.delete(1.0, tk.END)
+        self.text_display.insert(tk.END, self.text_to_type)
+        self.text_display.config(state=tk.DISABLED)
+
+        self.user_input.set("")
+        self.start_time = time.time()
+
+    def evaluate_result(self):
+        end_time = time.time()
+        elapsed_time = end_time - self.start_time
+        user_input = self.user_input.get()
+
+        if user_input == self.text_to_type:
+            result_message = f"Congratulations! You typed it correctly.\nTime taken: {elapsed_time:.2f} seconds"
+        else:
+            result_message = "Sorry, there was a mistake in your typing."
+
+        tk.messagebox.showinfo("Typing Speed Test Result", result_message)
+
+    def generate_random_paragraph(self, difficulty):
+        if difficulty == 'Easy':
+            return lorem.sentence()
+        elif difficulty == 'Intermediate':
+            return lorem.paragraph()
+        elif difficulty == 'Hard':
+            return lorem.paragraphs()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = TypingSpeedTestApp(root)
+    root.mainloop()
