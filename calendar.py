@@ -1,20 +1,22 @@
-from tkinter import *
-from tkinter import Tk, Label
-from PIL import Image, ImageTk
-import calendar
 
-root=Tk()
+from tkinter import *
+import tkinter as tk
+import calendar
+from PIL import Image, ImageTk
+
+root=tk.Tk()
 root.geometry('400x300')
 root.title('calendar')
 
 
 def show():
-
-    m = int(calendar.month.get())
-    y = int(calendar.year.get())
+    m = int(month.get())
+    y = int(year.get())
     output = calendar.month(y, m)
 
-    cal.insert('end', 1.0)
+
+    cal.insert("end", output)
+
 
 def clear():
     cal.delete(1.0, "end")
@@ -24,30 +26,34 @@ def exit():
     root.destroy()
 
 
-    img = ImageTk.PhotoImage(Image.open('calendar.png'))
-    label = Label(image=img)
-    label.place(x = 170, y = 3 )
+img = ImageTk.PhotoImage(Image.open('calendar.png'))
+label = Label(image=img)
+label.place(x = 50, y = 8 )
 
-    m_label = Label(root, text="Month", font=( '10' , 'verdana', 'bold'))
-    m_label.place(x=70, y=80)
+m_label = Label(root, text="Month", font=('verdana','10' , 'bold'))
+m_label.place(x=70, y=80)
 
-    month = Spinbox(root, from_=11, to = 12 , width='5')
-    month.place(x=140, y=80)
 
-    y_label = Label(root, text="Year", font=('10', 'verdana', 'bold'))
-    y_label.place(x=70, y=80)
+month = Spinbox(root, from_=1, to=12 , width=5)
+month.place(x=140, y=80)
 
-    year = Spinbox(root, from_=2023, to = 3000 , width='8')
-    year.place(x=260, y=80)
+y_label = Label(root, text="Year", font=('verdana', '10' , 'bold'))
+y_label.place(x=210, y=80)
 
-    cal = Text(root, width=33, height=8, relief=RIDGE,borderwidth=2)
-    cal.place(x= 70, y= 110)
+year = Spinbox(root, from_=2023, to=3000 , width=8)
+year.place(x=260, y=80)
 
-    Show = (Button(root, text='show', font=('verdana', '10', 'bold'), relief=RIDGE, borderwidth=2, command=show))
-    Show.place(x= 140 ,y= 250)
+cal = Text(root, width=33, height=8, relief=RIDGE, borderwidth=2)
+cal.place(x= 70, y= 110)
 
-    Clear = (Button(root, text='clear', font=('verdana', '10', 'bold'), relief=RIDGE, borderwidth=2, command=show))
-    Clear.place(x= 200, y= 250)
+show = Button(root, text='Show', font=('verdana', '10', 'bold'), relief=RIDGE, borderwidth=2, command=show)
+show.place(x= 140 ,y= 250)
 
-    Exit = (Button(root, text='Exit', font=('verdana', '10', 'bold'), relief = RIDGE, borderwidth=2, command=show))
-    Exit.place(x= 260, y= 250)
+clear = Button(root, text='Clear', font=('verdana', '10', 'bold'), relief=RIDGE, borderwidth=2, command=clear)
+clear.place(x= 200, y= 250)
+
+exit = Button(root, text='Exit', font=('verdana', '10', 'bold'), relief=RIDGE, borderwidth=2, command=exit)
+exit.place(x= 260, y= 250)
+
+
+root.mainloop()
