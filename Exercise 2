@@ -3,7 +3,7 @@ science = input("enter your grade in science: ")
 math = input("enter your grade in  math: ")
 english = input("enter your grade in english: ")
 total = float(science) + float(math) + float(english)
-average = float(total) / 2
+average = float(total) / 3
 print("Grade in Science: ",science)
 print("Grade in Math: ",math)
 print("Grade in English: ",science)
